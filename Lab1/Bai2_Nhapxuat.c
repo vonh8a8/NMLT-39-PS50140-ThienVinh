@@ -7,13 +7,14 @@ short namSinh, tuoi;
 float diemTB;
 int main() {
 	printf("Nhap ho va ten: ");
-	scanf("%s", hoVaTen);
+	scanf(" %[^\n]", hoVaTen);//gap ky tu xuong dong nen dung %[^\n] de nhap chuoi co khoang trang
 	printf("Nhap MSSV: ");
 	scanf("%s", MSSV);
 	printf("Nhap nam sinh: ");
 	scanf("%hu", &namSinh);
 	printf("Nhap diem trung binh: ");
 	scanf("%f", &diemTB);
+	//xuat thong tin sinh vien
 	printf("\nThong tin sinh vien:\n");
 	printf("Ho va ten: %s\n", hoVaTen);
 	printf("MSSV: %s\n", MSSV);

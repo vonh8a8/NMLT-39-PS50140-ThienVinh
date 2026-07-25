@@ -6,14 +6,14 @@ int main()
     
     do{
         printf("+---------------------------------------------------+\n");
-        printf("|             MENU CHƯƠNG TRÌNH LAB 4               |\n");
+        printf("|             MENU CHUONG TRINH LAB 4               |\n");
         printf("+---------------------------------------------------+\n");
-        printf("| 1. Tính trung bình tổng các số chia hết cho 2     |\n");
-        printf("| 2. Kiểm tra Số nguyên tố                          |\n");
-        printf("| 3. Kiểm tra Số chính phương                       |\n");
-        printf("| 4. Thoát chương trình                             |\n");
+        printf("| 1. Tinh trung binh tong cac so chia het cho 2     |\n");
+        printf("| 2. Kiem tra so nguyen to                          |\n");
+        printf("| 3. Kiem tra so chinh phuong                       |\n");
+        printf("| 4. Thoat chuong trinh                             |\n");
         printf("+---------------------------------------------------+\n");
-        printf(">> Xin mời chọn chức năng (1-4): \n");
+        printf(">> Xin moi chon chuc nang (1-4): \n");
         scanf("%d", &chon);
         switch(chon){
             case 1:

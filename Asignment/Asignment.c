@@ -3,8 +3,6 @@
 int main()
 {
     int chon, a, b, c, d;
-    int bac1, bac2, bac3, bac4, bac5, bac6;
-    float t, x1, x2, delta;
     do
     {
         printf("+---------------------------------------------------+\n");
@@ -14,9 +12,17 @@ int main()
         printf("|  1. Kiem tra so nguyen                            |\n");
         printf("|  2. Tim uoc so chung va boi so chung cua 2 so     |\n");
         printf("|  3. Chuong trinh tinh tien cho quan Karaoke       |\n");
+        printf("|  4. Tinh tien dien                                |\n");
+        printf("|  5. Doi tien                                      |\n");
+        printf("|  6. Tinh lai suat vay ngan hang vay tra gop       |\n");
+        printf("|  7. Vay tien mua xe                               |\n");
+        printf("|  8. Sap xep thong tin nhan vien                   |\n");
+        printf("|  9. Game FPOLY - LOTT (2/15)                      |\n");
+        printf("|  10. Tinh toan phan so                            |\n");
         printf("+---------------------------------------------------+\n");
-        printf(">> Chon chuc nang cua ban (0-3): ");
+        printf(">> Chon chuc nang cua ban (0-10): ");
         scanf("%d", &chon);
+
         switch (chon)
         {
         case 0:
@@ -31,11 +37,9 @@ int main()
             printf("Ban chon chuc nang 2: Tim uoc so chung va boi so chung cua 2 so\n");
             printf("Nhap hai so nguyen: ");
             scanf("%d%d", &a, &b);
-            
             break;
         case 3:
             printf("Ban chon chuc nang 3: Chuong trinh tinh tien cho quan Karaoke\n");
-            // Implementation for karaoke billing would go here
             break;
         default:
             printf("Ban phai chon chuc nang 0 - 3\n");

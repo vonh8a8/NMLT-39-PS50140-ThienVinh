@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <locale.h>
 void menu();
 void chucNang1();
 int soLonNhat(int a, int b, int c);
@@ -10,6 +11,7 @@ void chucNang4();
 void chucNang5();
 int main()
 {
+    setlocale(LC_ALL, "Vietnamese");
     int chon;
     do
     {
@@ -92,5 +94,24 @@ void chucNang2()
 
 bool kiemTraNamNhuan(int nam)
 {
+    if ((nam % 4 == 0 && nam % 100 != 0) || (nam % 400 == 0))
+    {
+        return true;
+    }
     return false;
+}
+
+void chucNang3()
+{
+    printf("Chức năng 3: Hoán vị 2 số (Sử dụng Con trỏ)\n");
+}
+
+void chucNang4()
+{
+    printf("Chức năng 4: Kiểm tra & Phân loại Tam giác\n");
+}
+
+void chucNang5()
+{
+    printf("Chức năng 5: Thoát chương trình\n");
 }

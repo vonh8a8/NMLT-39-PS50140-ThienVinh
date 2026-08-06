@@ -5,6 +5,7 @@ float tinhTrungBinh(int Mang[], int n);
 void yeuCau2();
 void yeuCau3();
 void maTranBinhPhuong(int row, int col);
+void yeuCau5();
 int main()
 {
     int chon;
@@ -43,6 +44,7 @@ int main()
             maTranBinhPhuong(3, 3);
             break;
         case 5:
+            yeuCau5();
             break;
         case 6:
             printf("Ban chon chuc nang 6: Thoat chuong trinh\n");
@@ -52,7 +54,6 @@ int main()
             break;
         }
     } while (chon != 6);
-
     return 0;
 }
 float tinhTrungBinh(int Mang[], int n)
@@ -179,9 +180,33 @@ void maTranBinhPhuong(int row, int col)
         printf("\n");
     }
 }
-void yeuCau4()
-{
-}
 void yeuCau5()
 {
+    printf("Ban chon chuc nang 5: Loc va xuat vi tri cac So le trong Ma tran\n");
+    int A[3][3];
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf("A[%d][%d] = ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+    printf("===============================================================\n");
+    printf("Cac so le trong ma tran la: \n");
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (A[i][j] % 2 == 1)
+            {
+                printf("A[%d][%d] = %d \t", i, j, A[i][j]);
+            }
+            else
+            {
+                printf("A[%d][%d] = null \t", i, j);
+            }
+        }
+        printf("\n");
+    }
 }

@@ -3,26 +3,28 @@
 void yeuCau1();
 float tinhTrungBinh(int Mang[], int n);
 void yeuCau2();
+void hoanVi(int *a, int *b);
 void yeuCau3();
 void maTranBinhPhuong(int row, int col);
 void yeuCau5();
 int main()
 {
     int chon;
-    printf("+---------------------------------------------------+\n");
-    printf("|             MENU CHUONG TRINH LAB 6               |\n");
-    printf("+---------------------------------------------------+\n");
-    printf("| 1. Tinh trung binh tong so chia het cho 3 va 5    |\n");
-    printf("| 2. Tim gia tri Lon nhat va Nho nhat trong Mang    |\n");
-    printf("| 3. Sap xep Mang theo thu tu Giam dan              |\n");
-    printf("| 4. Ma tran binh phuong (Mang 2 chieu)             |\n");
-    printf("| 5. Loc va xuat vi tri cac So le trong Ma tran     |\n");
-    printf("| 6. Thoat chuong trinh                             |\n");
-    printf("+---------------------------------------------------+\n");
-    printf("Ban chon chuc nang: ");
-    scanf("%d", &chon);
     do
     {
+
+        printf("+---------------------------------------------------+\n");
+        printf("|             MENU CHUONG TRINH LAB 6               |\n");
+        printf("+---------------------------------------------------+\n");
+        printf("| 1. Tinh trung binh tong so chia het cho 3 va 5    |\n");
+        printf("| 2. Tim gia tri Lon nhat va Nho nhat trong Mang    |\n");
+        printf("| 3. Sap xep Mang theo thu tu Giam dan              |\n");
+        printf("| 4. Ma tran binh phuong (Mang 2 chieu)             |\n");
+        printf("| 5. Loc va xuat vi tri cac So le trong Ma tran     |\n");
+        printf("| 6. Thoat chuong trinh                             |\n");
+        printf("+---------------------------------------------------+\n");
+        printf("Ban chon chuc nang: ");
+        scanf("%d", &chon);
         if (chon < 1 || chon > 6)
         {
             printf("Lua chon khong hop le. Vui long chon lai.(1 - 6)\n");
@@ -129,6 +131,12 @@ void yeuCau2()
     printf("Gia tri lon nhat trong mang la: %d\n", max);
     printf("Gia tri nho nhat trong mang la: %d\n", min);
 }
+void hoanVi(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 void yeuCau3()
 {
     int Mang[100], n, i, j, temp;
@@ -147,9 +155,7 @@ void yeuCau3()
         {
             if (Mang[i] < Mang[j])
             {
-                temp = Mang[i];
-                Mang[i] = Mang[j];
-                Mang[j] = temp;
+                hoanVi(&Mang[i], &Mang[j]);
             }
         }
     }
@@ -198,7 +204,7 @@ void yeuCau5()
     {
         for (int j = 0; j < 3; j++)
         {
-            if (A[i][j] % 2 == 1)
+            if (A[i][j] % 2 != 0)
             {
                 printf("A[%d][%d] = %d \t", i, j, A[i][j]);
             }

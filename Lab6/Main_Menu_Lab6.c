@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <float.h>
 void yeuCau1();
 float tinhTrungBinh(int Mang[], int n);
 void yeuCau2();
 void yeuCau3();
+void maTranBinhPhuong(int row, int col);
 int main()
 {
     int chon;
@@ -18,35 +20,45 @@ int main()
     printf("+---------------------------------------------------+\n");
     printf("Ban chon chuc nang: ");
     scanf("%d", &chon);
-    switch (chon)
+    do
     {
-    case 1:
-        yeuCau1();
-        break;
-    case 2:
-        yeuCau2();
-        break;
-    case 3:
-        yeuCau3();
-        break;
-    case 4:
-        break;
-    case 5:
-        break;
-    case 6:
-        printf("Ban chon chuc nang 6: Thoat chuong trinh\n");
-        break;
-    default:
-        printf("Lua chon khong hop le. Vui long chon lai.(1 - 6)\n");
-        break;
-    }
+        if (chon < 1 || chon > 6)
+        {
+            printf("Lua chon khong hop le. Vui long chon lai.(1 - 6)\n");
+            printf("Ban chon chuc nang: ");
+            scanf("%d", &chon);
+        }
+        switch (chon)
+        {
+        case 1:
+            yeuCau1();
+            break;
+        case 2:
+            yeuCau2();
+            break;
+        case 3:
+            yeuCau3();
+            break;
+        case 4:
+            maTranBinhPhuong(3, 3);
+            break;
+        case 5:
+            break;
+        case 6:
+            printf("Ban chon chuc nang 6: Thoat chuong trinh\n");
+            break;
+        default:
+            printf("Lua chon khong hop le. Vui long chon lai.(1 - 6)\n");
+            break;
+        }
+    } while (chon != 6);
+
     return 0;
 }
 float tinhTrungBinh(int Mang[], int n)
 {
     int i, tong = 0, dem = 0;
     float TB;
-
     for (i = 0; i < n; i++)
     {
         if (Mang[i] % 3 == 0 && Mang[i] % 5 == 0)
@@ -63,42 +75,29 @@ float tinhTrungBinh(int Mang[], int n)
     }
     else
     {
-        return -1; // Trường hợp không có số nào chia hết cho cả 3 và 5
+        return -FLT_MAX; // Trường hợp không có số nào chia hết cho cả 3 và 5
     }
 }
 void yeuCau1()
 {
-    int n, i, tong = 0, dem = 0;
-    float TB;
-
+    int n;
+    int Mang[10];
     printf("Ban chon chuc nang 1: Tinh trung binh tong so chia het cho 3 va 5\n");
-    printf("Nhap mot so nguyen duong n: ");
+    printf("Nhap so luong phan tu cua mang (n <= 10): ");
     scanf("%d", &n);
-
-    while (n <= 0)
+    for (int i = 0; i < n; i++)
     {
-        printf("Vui long nhap lai mot so nguyen duong n (>0)!\n");
-        printf("Nhap mot so nguyen duong n: ");
-        scanf("%d", &n);
+        printf("Nhap phan tu thu [%d]: ", i + 1);
+        scanf("%d", &Mang[i]);
     }
-
-    for (i = 1; i <= n; i++)
+    float TB = tinhTrungBinh(Mang, n);
+    if (TB != -FLT_MAX)
     {
-        if (i % 3 == 0 && i % 5 == 0)
-        {
-            tong += i;
-            dem++;
-        }
-    }
-
-    if (dem > 0)
-    {
-        TB = (float)tong / dem;
-        printf("Trung binh tong cac so chia het cho ca 3 va 5 tu 1 den %d la: %.2f\n", n, TB);
+        printf("Trung binh tong so chia het cho 3 va 5 la: %.2f\n", TB);
     }
     else
     {
-        printf("Khong co so nao chia het cho ca 3 va 5 tu 1 den %d\n", n);
+        printf("Khong co so nao chia het cho ca 3 va 5\n");
     }
 }
 void yeuCau2()
@@ -153,10 +152,36 @@ void yeuCau3()
             }
         }
     }
-    printf("Mang sau khi sap xep theo thu tu Giam dan la: ");
+    printf("Mang sau khi sap xep theo thu tu Giam dan la: \n");
     for (i = 0; i < n; i++)
     {
-        printf("%d ", Mang[i]);
+        printf("%d \t", Mang[i]);
     }
     printf("\n");
+}
+void maTranBinhPhuong(int row, int col)
+{
+    int A[row][col];
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            printf("A[%d][%d] = ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            printf("A[%d][%d] = %3d \t", i, j, A[i][j] * A[i][j]);
+        }
+        printf("\n");
+    }
+}
+void yeuCau4()
+{
+}
+void yeuCau5()
+{
 }

@@ -32,7 +32,7 @@ int main()
         printf("|  9. Game FPOLY - LOTT (2/15)                      |\n");
         printf("|  10. Tinh toan phan so                            |\n");
         printf("+---------------------------------------------------+\n");
-        printf(">> Chon chuc nang cua ban (0-10): ");
+        printf("=> Chon chuc nang cua ban (0-10): ");
         scanf("%d", &chon);
         switch (chon)
         {
@@ -70,7 +70,7 @@ int main()
             yeuCau10();
             break;
         default:
-            printf("Ban phai chon chuc nang 0 - 10\n");
+            printf("Ban phai chon chuc nang 0 - 10!\n");
             break;
         }
     } while (chon != 0);
@@ -166,11 +166,6 @@ void yeuCau2()
 
 void yeuCau3()
 {
-    // Blet rang:
-    //  Giá tiền 3 giờ đầu là 150000, bắt đầu giờ thứ 4 giảm 30%.
-    //  | Quán chỉ hoạt động trong khoảng giờ từ 12 giờ ) 23 giờ.
-    //  Nếu giờ bắt đầu trong khoảng 14 – 17 thì giảm tiếp 10% tổng
-    //  | tiền thanh toán
     int s, e, tien;
     printf("\nBan chon chuc nang 3: tinh tien dien cho quan karaoke\n");
     printf("\nNhap gio vao: ");
@@ -242,6 +237,35 @@ void yeuCau4()
 
 void yeuCau5()
 {
+    int tien;
+    int menhGia[] = {500000, 200000, 100000, 50000, 20000, 10000, 5000, 2000, 1000};
+    int soTo[9];
+    int i;
+
+    printf("\nBan chon chuc nang 5: doi tien\n");
+    printf("\nNhap so tien can doi: ");
+    scanf("%d", &tien);
+
+    while (tien < 0)
+    {
+        printf("Vui long nhap lai so tien can doi (>=0)!\n");
+        printf("\nNhap so tien can doi: ");
+        scanf("%d", &tien);
+    }
+
+    for (i = 0; i < 9; i++)
+    {
+        soTo[i] = tien / menhGia[i]; // Tính số tờ tiền của mỗi mệnh giá
+        tien = tien % menhGia[i];    // Cập nhật số tiền còn lại sau khi đổi tờ tiền của mệnh giá hiện tại
+    }
+    for (i = 0; i < 9; i++)
+    {
+        printf("So to %d vnd: %d\n", menhGia[i], soTo[i]);
+    }
+    if (tien > 0)
+    {
+        printf("So tien con lai khong doi duoc la: %d vnd\n", tien);
+    }
 }
 
 void yeuCau6()

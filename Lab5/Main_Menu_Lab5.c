@@ -57,6 +57,7 @@ void menu()
 void chucNang1()
 {
     int a, b, c;
+    printf("\nChuc nang 1: Tim gia tri lon nhat trong 3 so\n");
     printf("Nhap a, b, c: ");
     scanf("%d %d %d", &a, &b, &c);
     printf("Gia tri lon nhat trong 3 so vua nhap la: %d\n", soLonNhat(a, b, c));
@@ -79,7 +80,7 @@ int soLonNhat(int a, int b, int c)
 void chucNang2()
 {
     int nam;
-    printf("Chuc nang 2: Kiem tra nam nhuan\n");
+    printf("\nChuc nang 2: Kiem tra nam nhuan\n");
     printf("Nhap nam: ");
     scanf("%d", &nam);
     if (kiemTraNamNhuan(nam))
@@ -104,7 +105,7 @@ bool kiemTraNamNhuan(int nam)
 void chucNang3()
 {
     int a, b;
-    printf("Chuc nang 3: Hoan vi 2 so (Su dung Con tro)\n");
+    printf("\nChuc nang 3: Hoan vi 2 so (Su dung Con tro)\n");
     printf("Nhap 2 so nguyen: ");
     scanf("%d %d", &a, &b);
     printf("Truoc khi hoan vi: a = %d, b = %d\n", a, b);
@@ -121,7 +122,7 @@ void hoanVi(int *a, int *b)
 // Chuc nang 4: Kiem tra & Phan loai Tam giac
 void chucNang4()
 {
-    printf("Chuc nang 4: Kiem tra & Phan loai Tam giac\n");
+    printf("\nChuc nang 4: Kiem tra & Phan loai Tam giac\n");
     float a, b, c;
     printf("Nhap 3 canh cua tam giac: ");
     scanf("%f %f %f", &a, &b, &c);

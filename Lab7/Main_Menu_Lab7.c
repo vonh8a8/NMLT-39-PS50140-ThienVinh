@@ -4,6 +4,7 @@
 void demNguyenAmPhuAm();
 void kiemTraDangNhap();
 void sapXepChuoi();
+void thapPhanSangNhiPhan();
 int main()
 {
     int chon;
@@ -37,6 +38,7 @@ int main()
             break;
         case 4:
             printf("Ban chon chuc nang 4: Chuyen doi so Thap phan sang Nhi phan (Chuoi)\n");
+            thapPhanSangNhiPhan();
             break;
         case 5:
             printf("Ban chon chuc nang 5: Thoat chuong trinh\n");
@@ -101,10 +103,8 @@ void sapXepChuoi()
     {
         printf("Chuoi %d: ", i + 1);
         fgets(s[i], sizeof(s[i]), stdin);
-        s[i][strcspn(s[i], "\n")] = '\0'; // Loại bỏ ký tự newline
-        // s[i][j];
+        s[i][strcspn(s[i], "\n")] = '\0';
     }
-    // Sắp xếp chuỗi theo thứ tự bảng chữ cái
     for (int i = 0; i < 4; i++)
     {
         for (int j = i + 1; j < 5; j++)
@@ -123,4 +123,33 @@ void sapXepChuoi()
     {
         printf("%s\n", s[i]);
     }
+}
+
+void thapPhanSangNhiPhan()
+{
+    int n;
+    printf("Nhap vao mot so thap phan: ");
+    scanf("%d", &n);
+    while (n < 0)
+    {
+        printf("Vui long nhap mot so thap phan khong am.\n");
+        printf("Nhap vao mot so thap phan: ");
+        scanf("%d", &n);
+    }
+    char nhiPhan[50];
+    int index = n;
+    while (n != 0)
+    {
+        if (n % 2 == 0)
+        {
+            strcat(nhiPhan, "0");
+        }
+        else
+        {
+            strcat(nhiPhan, "1");
+        }
+        n = n / 2;
+    }
+    strrev(nhiPhan);
+    printf("\nSo %d sau khi doi thanh ma nhi phan la: %s\n", index, nhiPhan);
 }

@@ -270,10 +270,79 @@ void yeuCau5()
 
 void yeuCau6()
 {
+    int tienVay, thang = 12;
+    float laiSuat = 0.5, tienLai, tienGoc, tienTra, tienConLai;
+    printf("\nBan chon chuc nang 6: tinh lai suat vay ngan hang vay tra gop\n");
+    printf("\nNhap so tien vay: ");
+    scanf("%d", &tienVay);
+
+    // printf("\nSo tien phai tra moi thang la: %d vnd\n", (int)tienTra);
+    printf("\nBANG TINH TIEN GOP MOI THANG:\n");
+    printf("\n");
+    printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
+    printf("| Ky han        | Lai phai tra          | Goc phai tra          | Tien tra              | So tien con lai               |\n");
+    printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
+    tienConLai = tienVay;
+    for (int i = 1; i <= thang; i++)
+    {
+        tienLai = tienConLai * laiSuat;
+        tienGoc = tienVay / thang;
+        tienConLai = tienConLai - tienGoc;
+        tienTra = tienGoc + tienLai;
+        printf("| %d\t\t| %8d\t\t| %8d\t\t| %8d\t\t| %9d\t\t\t|\n", i, (int)tienLai, (int)tienGoc, (int)tienTra, (int)tienConLai);
+        printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
+    }
+    // lai phai tra = tienVay * laiSuat
+    // goc phai tra = tienVay / thang
+    // tien tra = lai phai tra / thang + goc phai tra
 }
 
 void yeuCau7()
 {
+    //     7. Chức năng số 7: Xây dựng chương trình vay tiền mua xe
+    // Input: Nhập vào số phần trăm vay tối đa (ví dụ: 80 – là trả trước 20% giá trị, trả
+    // góp 80% giá trị)
+    // Output: Hiển thị số tiền phải trả lần đầu, và số tiền phải trả hàng tháng cho
+    // đến hết kỳ hạn vay
+    // Biết rằng:
+    // Tiền được vay cố định: 500 triệu (VNĐ)
+    // Thời hạn vay: 24 năm
+    // Lãi suất cố định năm: 7.2%
+    int tienVay = 500000000;              // 500 triệu
+    int thang = 24 * 12;                  // 24 năm
+    float laiSuatNam = 0.072;             // 7.2%
+    float laiSuatThang = laiSuatNam / 12; // Lãi suất hàng tháng
+    float tienLai, tienGoc, tienTra, tienConLai;
+    printf("\nBan chon chuc nang 7: vay tien mua xe\n");
+    printf("\nNhap so phan tram vay toi da (0-100): ");
+    int phanTramVay;
+    scanf("%d", &phanTramVay);
+    while (phanTramVay < 0 || phanTramVay > 100)
+    {
+        printf("Vui long nhap lai so phan tram vay toi da (0-100)!\n");
+        printf("\nNhap so phan tram vay toi da (0-100): ");
+        scanf("%d", &phanTramVay);
+    }
+    // int tienTraTruoc = tienVay * ((100 - phanTramVay) / 100);
+    int tienTraTruoc = tienVay - tienVay * (phanTramVay / 100);
+    // int tienVayNganHang = tienVay - tienTraTruoc; // tienTraTruoc
+    int tienVayThucTe = tienVay * phanTramVay / 100;
+    printf("\nSo tien phai tra lan dau: %d vnd\n", tienTraTruoc);
+    printf("\nBANG TINH TIEN GOP MOI THANG:\n");
+    printf("\n");
+    printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
+    printf("| Ky han        | Lai phai tra          | Goc phai tra          | Tien tra              | So tien con lai               |\n");
+    printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
+    tienConLai = tienVayThucTe;
+    for (int i = 1; i <= thang; i++)
+    {
+        tienLai = tienConLai * laiSuatThang;
+        tienGoc = tienVayThucTe / thang;
+        tienConLai = tienConLai - tienGoc;
+        tienTra = tienGoc + tienLai;
+        printf("| %d\t\t| %8d\t\t| %8d\t\t| %8d\t\t| %9d\t\t\t|\n", i, (int)tienLai, (int)tienGoc, (int)tienTra, (int)tienConLai);
+        printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
+    }
 }
 
 void yeuCau8()

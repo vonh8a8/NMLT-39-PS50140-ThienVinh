@@ -128,7 +128,7 @@ ketThuc:
     }
 ketThuc2:
 }
-
+//==================================================================
 int UCLN(int a, int b)
 {
     int ucln;
@@ -147,7 +147,7 @@ int BCNN(int a, int b)
     int bcnn = (a * b) / UCLN(a, b);
     return bcnn;
 }
-
+//==================================================================
 void yeuCau2()
 {
     float a, b;
@@ -163,7 +163,7 @@ void yeuCau2()
     printf("Uoc so chung lon nhat cua %d va %d la: %d\n", (int)b, (int)a, UCLN((int)a, (int)b));
     printf("Boi so chung nho nhat cua %d va %d la: %d\n", (int)a, (int)b, BCNN((int)a, (int)b));
 }
-
+//==================================================================
 void yeuCau3()
 {
     int s, e, tien;
@@ -196,6 +196,7 @@ void yeuCau3()
     }
     printf("\nSo tien phai tra la: %d vnd\n", tien);
 }
+//==================================================================
 void yeuCau4()
 {
     int kwh, tien;
@@ -234,25 +235,22 @@ void yeuCau4()
     }
     printf("\nSo tien phai tra la: %d vnd\n", tien);
 }
-
+//==================================================================
 void yeuCau5()
 {
     int tien;
     int menhGia[] = {500000, 200000, 100000, 50000, 20000, 10000, 5000, 2000, 1000};
     int soTo[9];
     int i;
-
     printf("\nBan chon chuc nang 5: doi tien\n");
     printf("\nNhap so tien can doi: ");
     scanf("%d", &tien);
-
     while (tien < 0)
     {
         printf("Vui long nhap lai so tien can doi (>=0)!\n");
         printf("\nNhap so tien can doi: ");
         scanf("%d", &tien);
     }
-
     for (i = 0; i < 9; i++)
     {
         soTo[i] = tien / menhGia[i]; // Tính số tờ tiền của mỗi mệnh giá
@@ -260,36 +258,38 @@ void yeuCau5()
     }
     for (i = 0; i < 9; i++)
     {
-        printf("So to %d vnd: %d\n", menhGia[i], soTo[i]);
+        if (soTo[i] > 0)
+        {
+            printf("%3d to %6d vnd\n", soTo[i], menhGia[i]);
+        }
     }
     if (tien > 0)
     {
-        printf("So tien con lai khong doi duoc la: %d vnd\n", tien);
+        printf(">> So tien con lai khong doi duoc la: %d vnd\n", tien);
     }
 }
-
+//==================================================================
 void yeuCau6()
 {
     int tienVay, thang = 12;
-    float laiSuat = 0.5, tienLai, tienGoc, tienTra, tienConLai;
+    float laiSuat = 0.05, tienLai, tienGoc, tienConLai;
     printf("\nBan chon chuc nang 6: tinh lai suat vay ngan hang vay tra gop\n");
     printf("\nNhap so tien vay: ");
     scanf("%d", &tienVay);
-
-    // printf("\nSo tien phai tra moi thang la: %d vnd\n", (int)tienTra);
     printf("\nBANG TINH TIEN GOP MOI THANG:\n");
     printf("\n");
     printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
     printf("| Ky han        | Lai phai tra          | Goc phai tra          | Tien tra              | So tien con lai               |\n");
     printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
+    tienGoc = tienVay / thang;
     tienConLai = tienVay;
     for (int i = 1; i <= thang; i++)
     {
-        tienLai = tienConLai * laiSuat;
-        tienGoc = tienVay / thang;
-        tienConLai = tienConLai - tienGoc;
-        tienTra = tienGoc + tienLai;
-        printf("| %d\t\t| %8d\t\t| %8d\t\t| %8d\t\t| %9d\t\t\t|\n", i, (int)tienLai, (int)tienGoc, (int)tienTra, (int)tienConLai);
+        // tienLai = tienConLai * laiSuat;
+        // tienConLai = tienConLai - tienGoc;
+        tienLai = tienVay * laiSuat;
+        tienVay = tienVay - tienGoc;
+        printf("| %d\t\t| %8d\t\t| %8d\t\t| %8d\t\t| %9d\t\t\t|\n", i, (int)tienLai, (int)tienGoc, (int)tienGoc + (int)tienLai, (int)tienVay);
         printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
     }
     // lai phai tra = tienVay * laiSuat
@@ -299,19 +299,10 @@ void yeuCau6()
 
 void yeuCau7()
 {
-    //     7. Chức năng số 7: Xây dựng chương trình vay tiền mua xe
-    // Input: Nhập vào số phần trăm vay tối đa (ví dụ: 80 – là trả trước 20% giá trị, trả
-    // góp 80% giá trị)
-    // Output: Hiển thị số tiền phải trả lần đầu, và số tiền phải trả hàng tháng cho
-    // đến hết kỳ hạn vay
-    // Biết rằng:
-    // Tiền được vay cố định: 500 triệu (VNĐ)
-    // Thời hạn vay: 24 năm
-    // Lãi suất cố định năm: 7.2%
-    int tienVay = 500000000;              // 500 triệu
-    int thang = 24 * 12;                  // 24 năm
-    float laiSuatNam = 0.072;             // 7.2%
-    float laiSuatThang = laiSuatNam / 12; // Lãi suất hàng tháng
+    int tienVay = 500000000;
+    int thang = 24 * 12;
+    float laiSuatNam = 0.072;
+    float laiSuatThang = laiSuatNam / 12;
     float tienLai, tienGoc, tienTra, tienConLai;
     printf("\nBan chon chuc nang 7: vay tien mua xe\n");
     printf("\nNhap so phan tram vay toi da (0-100): ");

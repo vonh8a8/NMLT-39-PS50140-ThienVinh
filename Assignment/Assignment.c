@@ -6,6 +6,11 @@ int BCNN(int a, int b);
 void yeuCau2();
 void yeuCau3();
 void yeuCau4();
+struct giaDien
+{
+    int mucTieuThu;
+    int gia;
+};
 void yeuCau5();
 void yeuCau6();
 void yeuCau7();
@@ -199,41 +204,48 @@ void yeuCau3()
 //==================================================================
 void yeuCau4()
 {
-    int kwh, tien;
+    int soKW, tongTien = 0;
+    struct giaDien bangGiaDien[6] = {
+        {50, 1678},
+        {100, 1734},
+        {200, 2014},
+        {300, 2536},
+        {400, 2834},
+        {401, 2927}};
     printf("\nBan chon chuc nang 4: tinh tien dien\n");
     printf("\nNhap so kWh tieu thu: ");
-    scanf("%d", &kwh);
-    while (kwh < 0)
+    scanf("%d", &soKW);
+    while (soKW < 0)
     {
         printf("Vui long nhap lai so kWh tieu thu (>=0)!\n");
         printf("\nNhap so kWh tieu thu: ");
-        scanf("%d", &kwh);
+        scanf("%d", &soKW);
     }
-    if (kwh <= 50)
+    if (soKW <= bangGiaDien[0].mucTieuThu)
     {
-        tien = kwh * 1678;
+        tongTien = soKW * bangGiaDien[0].gia;
     }
-    else if (kwh <= 100)
+    else if (soKW <= bangGiaDien[1].mucTieuThu)
     {
-        tien = 50 * 1678 + (kwh - 50) * 1734;
+        tongTien = 50 * bangGiaDien[0].gia + (soKW - 50) * bangGiaDien[1].gia;
     }
-    else if (kwh <= 200)
+    else if (soKW <= bangGiaDien[2].mucTieuThu)
     {
-        tien = 50 * 1678 + 50 * 1734 + (kwh - 100) * 2014;
+        tongTien = 50 * bangGiaDien[0].gia + 50 * bangGiaDien[1].gia + (soKW - 100) * bangGiaDien[2].gia;
     }
-    else if (kwh <= 300)
+    else if (soKW <= bangGiaDien[3].mucTieuThu)
     {
-        tien = 50 * 1678 + 50 * 1734 + 100 * 2014 + (kwh - 200) * 2536;
+        tongTien = 50 * bangGiaDien[0].gia + 50 * bangGiaDien[1].gia + 100 * bangGiaDien[2].gia + (soKW - 200) * bangGiaDien[3].gia;
     }
-    else if (kwh <= 400)
+    else if (soKW <= bangGiaDien[4].mucTieuThu)
     {
-        tien = 50 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + (kwh - 300) * 2834;
+        tongTien = 50 * bangGiaDien[0].gia + 50 * bangGiaDien[1].gia + 100 * bangGiaDien[2].gia + 100 * bangGiaDien[3].gia + (soKW - 300) * bangGiaDien[4].gia;
     }
     else
     {
-        tien = 50 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + 100 * 2834 + (kwh - 400) * 2927;
+        tongTien = 50 * bangGiaDien[0].gia + 50 * bangGiaDien[1].gia + 100 * bangGiaDien[2].gia + 100 * bangGiaDien[3].gia + 100 * bangGiaDien[4].gia + (soKW - 400) * bangGiaDien[5].gia;
     }
-    printf("\nSo tien phai tra la: %d vnd\n", tien);
+    printf("\nSo tien phai tra la: %d vnd\n", tongTien);
 }
 //==================================================================
 void yeuCau5()

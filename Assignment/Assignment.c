@@ -15,6 +15,7 @@ void yeuCau5();
 void yeuCau6();
 void yeuCau7();
 void yeuCau8();
+const char xepLoai(float diem);
 void yeuCau9();
 void yeuCau10();
 int main()
@@ -133,7 +134,7 @@ ketThuc:
     }
 ketThuc2:
 }
-//==================================================================
+
 int UCLN(int a, int b)
 {
     int ucln;
@@ -152,7 +153,7 @@ int BCNN(int a, int b)
     int bcnn = (a * b) / UCLN(a, b);
     return bcnn;
 }
-//==================================================================
+
 void yeuCau2()
 {
     float a, b;
@@ -168,7 +169,7 @@ void yeuCau2()
     printf("Uoc so chung lon nhat cua %d va %d la: %d\n", (int)b, (int)a, UCLN((int)a, (int)b));
     printf("Boi so chung nho nhat cua %d va %d la: %d\n", (int)a, (int)b, BCNN((int)a, (int)b));
 }
-//==================================================================
+
 void yeuCau3()
 {
     int s, e, tien;
@@ -201,7 +202,7 @@ void yeuCau3()
     }
     printf("\nSo tien phai tra la: %d vnd\n", tien);
 }
-//==================================================================
+
 void yeuCau4()
 {
     int soKW, tongTien = 0;
@@ -245,34 +246,46 @@ void yeuCau4()
     {
         tongTien = 50 * bangGiaDien[0].gia + 50 * bangGiaDien[1].gia + 100 * bangGiaDien[2].gia + 100 * bangGiaDien[3].gia + 100 * bangGiaDien[4].gia + (soKW - 400) * bangGiaDien[5].gia;
     }
-    printf("\nSo tien phai tra la: %d vnd\n", tongTien);
+    printf("\nSo tien phai tra cho %d kwh la: %d vnd\n", soKW, tongTien);
 }
-//==================================================================
+
 void yeuCau5()
 {
-    int tien;
-    int menhGia[] = {500000, 200000, 100000, 50000, 20000, 10000, 5000, 2000, 1000};
-    int soTo[9];
-    int i;
-    printf("\nBan chon chuc nang 5: doi tien\n");
-    printf("\nNhap so tien can doi: ");
-    scanf("%d", &tien);
-    while (tien < 0)
+    struct dsMenhGia
     {
-        printf("Vui long nhap lai so tien can doi (>=0)!\n");
-        printf("\nNhap so tien can doi: ");
+        int soLuongTo;
+        int menhGia;
+    };
+    struct dsMenhGia dsTien[] =
+        {
+            {0, 1000},
+            {0, 2000},
+            {0, 5000},
+            {0, 10000},
+            {0, 20000},
+            {0, 50000},
+            {0, 100000},
+            {0, 200000},
+            {0, 500000},
+        };
+    int tien;
+    int soTo = 9;
+    printf("\nBan chon chuc nang 5: doi tien\n");
+    printf("\nNhap so tien can doi: \n");
+    scanf("%d", &tien);
+    while (tien <= 0)
+    {
+        printf("\nVui long nhap lai so tien can doi (>0)!\n");
+        printf("\nNhap so tien can doi: \n");
         scanf("%d", &tien);
     }
-    for (i = 0; i < 9; i++)
+    for (int i = soTo - 1; i >= 0; i--)
     {
-        soTo[i] = tien / menhGia[i]; // Tính số tờ tiền của mỗi mệnh giá
-        tien = tien % menhGia[i];    // Cập nhật số tiền còn lại sau khi đổi tờ tiền của mệnh giá hiện tại
-    }
-    for (i = 0; i < 9; i++)
-    {
-        if (soTo[i] > 0)
+        dsTien[i].soLuongTo = tien / dsTien[i].menhGia;
+        tien = tien % dsTien[i].menhGia;
+        if (dsTien[i].soLuongTo > 0)
         {
-            printf("%3d to %6d vnd\n", soTo[i], menhGia[i]);
+            printf("Menh gia %d co so to: %d\n", dsTien[i].menhGia, dsTien[i].soLuongTo);
         }
     }
     if (tien > 0)
@@ -280,45 +293,57 @@ void yeuCau5()
         printf(">> So tien con lai khong doi duoc la: %d vnd\n", tien);
     }
 }
-//==================================================================
+
 void yeuCau6()
 {
-    int tienVay, thang = 12;
-    float laiSuat = 0.05, tienLai, tienGoc, tienConLai;
+    int tienVay, tienGoc, kyHan;
+    float laiSuat, tienLai;
     printf("\nBan chon chuc nang 6: tinh lai suat vay ngan hang vay tra gop\n");
     printf("\nNhap so tien vay: ");
     scanf("%d", &tienVay);
-    printf("\nBANG TINH TIEN GOP MOI THANG:\n");
-    printf("\n");
-    printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
-    printf("| Ky han        | Lai phai tra          | Goc phai tra          | Tien tra              | So tien con lai               |\n");
-    printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
-    tienGoc = tienVay / thang;
-    tienConLai = tienVay;
-    for (int i = 1; i <= thang; i++)
+    while (tienVay <= 0)
     {
-        // tienLai = tienConLai * laiSuat;
-        // tienConLai = tienConLai - tienGoc;
+        printf("\nVui long nhap lai so tien can vay (>0)!\n");
+        printf("\nNhap so tien vay: ");
+        scanf("%d", &tienVay);
+    }
+    printf("\nNhap so thang vay: ");
+    scanf("%d", &kyHan);
+    while (kyHan <= 0)
+    {
+        printf("\nVui long nhap lai so thang (>0)!\n");
+        printf("\nNhap so thang vay: ");
+        scanf("%d", &kyHan);
+    }
+    printf("\nNhap lai xuat vay: ");
+    scanf("%f", &laiSuat);
+    while (laiSuat <= 0)
+    {
+        printf("\nVui long nhap lai lai xuat vay (>0)!\n");
+        printf("\nNhap lai xuat vay: ");
+        scanf("%f", &laiSuat);
+    }
+    printf("%36s\n", "BANG TINH TIEN GOP MOI THANG:");
+    printf("\n");
+    printf("%6s%18s%18s%18s%18s\n", "Ky han", "Lai phai tra", "Goc phai tra", "Tien tra", "So tien con lai");
+    tienGoc = tienVay / kyHan;
+    for (int i = 1; i <= kyHan; i++)
+    {
         tienLai = tienVay * laiSuat;
         tienVay = tienVay - tienGoc;
-        printf("| %d\t\t| %8d\t\t| %8d\t\t| %8d\t\t| %9d\t\t\t|\n", i, (int)tienLai, (int)tienGoc, (int)tienGoc + (int)tienLai, (int)tienVay);
-        printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
+        printf("%6d%18d%18d%18d%18d\n", i, (int)tienLai, tienGoc, (int)tienGoc + (int)tienLai, tienVay);
     }
-    // lai phai tra = tienVay * laiSuat
-    // goc phai tra = tienVay / thang
-    // tien tra = lai phai tra / thang + goc phai tra
 }
 
 void yeuCau7()
 {
     int tienVay = 500000000;
-    int thang = 24 * 12;
-    float laiSuatNam = 0.072;
-    float laiSuatThang = laiSuatNam / 12;
-    float tienLai, tienGoc, tienTra, tienConLai;
+    int kyHan = 24 * 12;
+    float laiThang = 7.2 / 12;
+    int tienGoc = tienVay / kyHan;
+    float phanTramVay;
     printf("\nBan chon chuc nang 7: vay tien mua xe\n");
     printf("\nNhap so phan tram vay toi da (0-100): ");
-    int phanTramVay;
     scanf("%d", &phanTramVay);
     while (phanTramVay < 0 || phanTramVay > 100)
     {
@@ -326,32 +351,51 @@ void yeuCau7()
         printf("\nNhap so phan tram vay toi da (0-100): ");
         scanf("%d", &phanTramVay);
     }
-    // int tienTraTruoc = tienVay * ((100 - phanTramVay) / 100);
-    int tienTraTruoc = tienVay - tienVay * (phanTramVay / 100);
-    // int tienVayNganHang = tienVay - tienTraTruoc; // tienTraTruoc
-    int tienVayThucTe = tienVay * phanTramVay / 100;
-    printf("\nSo tien phai tra lan dau: %d vnd\n", tienTraTruoc);
-    printf("\nBANG TINH TIEN GOP MOI THANG:\n");
-    printf("\n");
-    printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
-    printf("| Ky han        | Lai phai tra          | Goc phai tra          | Tien tra              | So tien con lai               |\n");
-    printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
-    tienConLai = tienVayThucTe;
-    for (int i = 1; i <= thang; i++)
+    for (int i = 1; i <= kyHan; i++)
     {
-        tienLai = tienConLai * laiSuatThang;
-        tienGoc = tienVayThucTe / thang;
-        tienConLai = tienConLai - tienGoc;
-        tienTra = tienGoc + tienLai;
-        printf("| %d\t\t| %8d\t\t| %8d\t\t| %8d\t\t| %9d\t\t\t|\n", i, (int)tienLai, (int)tienGoc, (int)tienTra, (int)tienConLai);
-        printf("+---------------+-----------------------+-----------------------+-----------------------+-------------------------------+\n");
+        int tienLai = tienVay * laiThang;
+        tienVay = tienVay - tienGoc;
+        int tienPhaitra = tienLai + tienGoc;
+        if (i == kyHan)
+        {
+            tienPhaitra = tienPhaitra + tienVay;
+            tienVay = 0;
+        }
+        printf("%6d%18d%18d%18d%18d\n", i, (int)tienLai, tienGoc, (int)tienGoc + (int)tienLai, tienVay);
     }
 }
 
 void yeuCau8()
 {
+    struct sinhVien
+    {
+        char mssv[9];
+        char tenSV[50];
+        float diemSV
+    };
+    struct sinhVien dsSinhVien[40] =
+        {
+            {"ps1234", "Nguyen Van A", 7.5},
+            {"ps1223", "Tran Thi B", 5.3},
+            {"ps1222", "Chau Thi Truc Quyen", 9.9}};
+    int n = 3;
+    for (int i = 0; i < n; i++)
+    {
+        printf("%5d%10s%30s%6.2f%10s", i + 1, dsSinhVien[i].mssv, dsSinhVien[i].tenSV, dsSinhVien[i].diemSV), xepLoai(dsSinhVien[i].diemSV);
+    }
 }
 
+const char *xepLoai(float diem)
+{
+    if (diem > 8.0)
+        return "Gioi";
+    else if (diem > 6.5)
+        return "Kha";
+    else if (diem > 5.0)
+        return "Turng Binh";
+    else
+        return "Yeu";
+}
 void yeuCau9()
 {
 }
